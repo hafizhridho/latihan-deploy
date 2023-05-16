@@ -1,6 +1,6 @@
-name: Deploy to Railway Dev Environment 
+name: Deploy to Railway Dev Environment
 
-on: 
+on:
   push:
     branches: [develop]
 
@@ -10,15 +10,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: action/setup-node@v1
+        uses: actions/checkout@v2
+
+      - name: Use Node 16
+        uses: actions/setup-node@v1
         with:
           node-version: 16.x
 
-      - name: install packages
+      - name: Install packages
         run: npm install
 
-      - name: install Railway
-        run: npm im-g @railway/cli
+      - name: Install Railway
+        run: npm i -g @railway/cli
 
       - name: Deploy
         run: railway up
